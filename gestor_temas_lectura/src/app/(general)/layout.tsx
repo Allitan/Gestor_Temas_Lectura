@@ -1,5 +1,6 @@
+import React from 'react';
 import ProviderTema from '../Providers/ProviderTema';
-import ProvidenProducto from '../Providers/ProviderTema'
+import TemasProvider from '../Providers/ProviderTema';
 
 export default function Layout({
     children
@@ -8,9 +9,9 @@ export default function Layout({
 }) {
     return (
         <div>
-            <ProviderTema>
+            <TemasProvider>
                 {children}
-            </ProviderTema>
+            </TemasProvider>
         </div>
     )
 }

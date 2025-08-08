@@ -1,29 +1,36 @@
 'use client'
-import React, { useContext, useState, useEffect } from 'react'
-import { Plantilla } from '../Modelos/Plantilla'
-import { contexTema } from '../Context/ContextoTema'
+import React, { useContext, useState, useEffect, ReactNode } from 'react'
+import { TemasContext } from '../Context/ContextoTema'
 import { Tema } from '../Modelos/Temas'
 
 //children
 //implementacion
 //exportar
 
-export default function ProviderTema({children}: Plantilla){
-    const [tema, setTema] = useState<Tema[]>([])
+export default function TemasProvider({children}: {children: ReactNode }) {
     const [temas, setTemas]=useState<Tema[]>([])
     
-    function agregarTemas(item:Tema){
-        setTemas([...temas,item])
+    useEffect(() => {
+        const temasI: Tema[] =Array.from({length:20}, (_,i) => ({
+            idTema: i + 1,
+            tituloTema: `Tema ${i + 1}`,
+            interesante: false,
+        }))
+        setTemas(temasI);
+    }, [])
+
+    const toggleInteresante = (id: number) => {
+        setTemas(prevTemas => prevTemas.map(temas => temas.idTema === id ? {... temas, interesante: !temas.interesante }: temas))
     }
 
     return(
-        <contexTema.Provider value={{tema,setTema,temas,agregarTemas}}>
+        <TemasContext.Provider value={{temas, toggleInteresante}}>
             {children}
-        </contexTema.Provider>
+        </TemasContext.Provider>
     )
 
 }
 
 export function useContextTema(){
-    return useContext(contexTema)
+    return useContext(TemasContext)
 }
