@@ -1,8 +1,7 @@
 import React from 'react';
-import ProviderTema from '../Providers/ProviderTema';
 import TemasProvider from '../Providers/ProviderTema';
 
-export default function Layout({
+export default function GeneralLayout({
     children
 }: {
     children: React.ReactNode;

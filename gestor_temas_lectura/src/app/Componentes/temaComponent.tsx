@@ -4,7 +4,7 @@ import React from "react"
 import { TemasContext } from "../Context/ContextoTema"
 import { Tema } from "../Modelos/Temas"
 
-export default function temaComponent({ tema }: {tema:Tema}){
+export default function TemaComponent({ tema }: {tema:Tema}){
     const { toggleInteresante } = React.useContext(TemasContext);
 
     return (
